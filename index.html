@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>IRB30103 International Trade and Political Economy — Course Overview</title>
+<meta name="description" content="Investigate a real international trade problem, prove it with data, and explain the political economy behind it. IRB30103, UniSZA." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f6f2ea;
+    --paper:#ffffff;
+    --ink:#14181f;
+    --ink-soft:#4a5462;
+    --muted:#7a8494;
+    --teal:#0d5f5f;
+    --teal-soft:#e6f0ef;
+    --orange:#d9531f;
+    --orange-soft:#fceee7;
+    --line:rgba(20,24,31,.12);
+    --line-strong:rgba(20,24,31,.22);
+    --radius:12px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  h1,h2,h3,h4{font-family:"Fraunces",Georgia,serif;line-height:1.08;letter-spacing:-.015em;margin:0;font-weight:500}
+  p{margin:0}
+  a{color:inherit;text-decoration:none}
+  .mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+
+  /* subtle paper texture */
+  body::before{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(20,24,31,.05) 1px, transparent 0);
+    background-size:22px 22px;
+    -webkit-mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 20%,transparent 85%);
+    mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 20%,transparent 85%);
+  }
+
+  /* ============ TICKER BAR ============ */
+  .ticker-bar{
+    background:var(--ink);color:#f0ece2;
+    overflow:hidden;white-space:nowrap;
+    padding:11px 0;
+    border-bottom:1px solid rgba(255,255,255,.08);
+    position:relative;z-index:2;
+  }
+  .ticker-track{
+    display:inline-flex;gap:46px;align-items:center;
+    animation:ticker 55s linear infinite;
+    font-family:"JetBrains Mono",monospace;
+    font-size:.74rem;letter-spacing:.06em;font-weight:500;
+    padding-left:24px;
+  }
+  .ticker-track span{opacity:.85;display:inline-flex;align-items:center;gap:8px}
+  .ticker-track span::before{
+    content:"";display:inline-block;width:5px;height:5px;border-radius:50%;
+    background:var(--orange);
+  }
+  .ticker-track span.up::before{background:#4bd6a0}
+  .ticker-track span.down::before{background:#ff6b6b}
+  @keyframes ticker{
+    from{transform:translateX(0)}
+    to{transform:translateX(-50%)}
+  }
+
+  /* ============ LAYOUT ============ */
+  .wrap{position:relative;z-index:1}
+  .container{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  section{padding:110px 0}
+
+  /* ============ HERO ============ */
+  .hero{padding:96px 0 60px;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:64px;align-items:center}
+  @media (max-width:960px){.hero-grid{grid-template-columns:1fr;gap:48px}}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:12px;
+    font-family:"JetBrains Mono",monospace;
+    font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink-soft);font-weight:500;
+  }
+  .eyebrow::before{
+    content:"";display:inline-block;width:22px;height:2px;background:var(--orange);
+  }
+
+  .hero h1{
+    font-size:clamp(2.6rem,6vw,4.8rem);
+    margin:26px 0 0;
+    font-weight:500;
+    letter-spacing:-.025em;
+  }
+  .hero h1 em{font-style:italic;color:var(--teal)}
+  .hero .code{
+    display:block;
+    font-family:"JetBrains Mono",monospace;
+    font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--muted);font-weight:500;margin-bottom:16px;
+  }
+  .lede{
+    font-size:clamp(1rem,1.4vw,1.14rem);
+    color:var(--ink-soft);max-width:54ch;margin-top:26px;
+  }
+  .lede strong{color:var(--ink);font-weight:600}
+
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:40px}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:15px 30px;border-radius:2px;
+    font-weight:600;font-size:.9rem;letter-spacing:.01em;
+    border:1.5px solid transparent;cursor:pointer;
+    transition:transform .2s,box-shadow .2s,background .2s,color .2s;
+  }
+  .btn-primary{
+    background:var(--ink);color:#f6f2ea;
+    box-shadow:4px 4px 0 rgba(13,95,95,.9);
+  }
+  .btn-primary:hover{
+    transform:translate(-1px,-1px);
+    box-shadow:6px 6px 0 rgba(13,95,95,.9);
+  }
+  .btn-ghost{
+    background:transparent;border-color:var(--ink);color:var(--ink);
+  }
+  .btn-ghost:hover{background:var(--ink);color:#f6f2ea}
+
+  /* ============ VIDEO CARD ============ */
+  .hero-video{position:relative}
+  .video-card{
+    position:relative;aspect-ratio:9/16;width:100%;max-width:320px;
+    margin:0 auto;
+    border-radius:6px;overflow:hidden;cursor:pointer;
+    background:#101317;
+    border:1px solid var(--ink);
+    box-shadow:10px 10px 0 var(--teal-soft), 10px 10px 0 1.5px var(--teal);
+    transition:transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s;
+  }
+  .video-card:hover{
+    transform:translate(-3px,-3px);
+    box-shadow:14px 14px 0 var(--teal-soft), 14px 14px 0 1.5px var(--teal);
+  }
+  .video-card::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(circle at 30% 25%, rgba(217,83,31,.55), transparent 50%),
+      radial-gradient(circle at 75% 75%, rgba(13,95,95,.65), transparent 55%),
+      linear-gradient(160deg,#12161c,#0a0d11);
+  }
+  .video-card::after{
+    content:"";position:absolute;inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),
+      linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+    background-size:28px 28px;
+    -webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);
+    mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);
+    opacity:.7;
+  }
+  .video-card .play-btn{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:66px;height:66px;border-radius:50%;
+    background:#f6f2ea;color:var(--ink);
+    display:grid;place-items:center;font-size:1.2rem;border:none;cursor:pointer;
+    padding-left:5px;z-index:2;transition:transform .3s;
+    box-shadow:0 0 0 4px rgba(246,242,234,.25);
+  }
+  .video-card:hover .play-btn{transform:translate(-50%,-50%) scale(1.08);box-shadow:0 0 0 8px rgba(246,242,234,.18)}
+  .video-card .video-caption{
+    position:absolute;bottom:18px;left:20px;right:20px;z-index:2;
+    display:flex;align-items:center;gap:10px;
+    font-family:"JetBrains Mono",monospace;
+    font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;
+    font-weight:600;color:#f6f2ea;
+  }
+  .video-card .video-caption::before{
+    content:"";width:7px;height:7px;border-radius:50%;
+    background:#ff5c2c;box-shadow:0 0 8px #ff5c2c;
+    animation:pulse 1.6s infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+  .video-card iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:3}
+
+  /* ============ STATS BAR ============ */
+  .stats{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:0;margin-top:80px;border-top:1.5px solid var(--ink);
+    border-bottom:1.5px solid var(--ink);
+  }
+  .stat{
+    padding:26px 22px;
+    border-right:1px solid var(--line);
+  }
+  .stat:last-child{border-right:none}
+  @media (max-width:640px){
+    .stat{border-right:none;border-bottom:1px solid var(--line)}
+    .stat:last-child{border-bottom:none}
+  }
+  .stat b{
+    display:block;font-family:"Fraunces",serif;
+    font-size:2rem;font-weight:600;letter-spacing:-.02em;
+    color:var(--ink);line-height:1;
+  }
+  .stat span{
+    display:block;margin-top:10px;
+    font-family:"JetBrains Mono",monospace;
+    font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--muted);
+  }
+
+  /* ============ SECTION HEADINGS ============ */
+  .kicker{
+    font-family:"JetBrains Mono",monospace;
+    font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--orange);font-weight:600;
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .kicker::before{content:"";width:6px;height:6px;background:var(--orange);border-radius:50%}
+  .section-title{
+    font-size:clamp(1.9rem,4vw,3rem);
+    margin-top:20px;font-weight:500;letter-spacing:-.02em;
+  }
+  .section-title em{font-style:italic;color:var(--teal)}
+  .section-sub{color:var(--ink-soft);max-width:66ch;margin-top:20px;font-size:1.02rem}
+
+  /* ============ CARDS ============ */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:20px;margin-top:52px}
+  .card{
+    position:relative;background:var(--paper);
+    border:1.5px solid var(--ink);
+    border-radius:var(--radius);padding:34px 30px;
+    box-shadow:5px 5px 0 rgba(20,24,31,.08);
+    transition:transform .3s,box-shadow .3s;
+  }
+  .card:hover{
+    transform:translate(-3px,-3px);
+    box-shadow:8px 8px 0 rgba(20,24,31,.1);
+  }
+  .card .icon{
+    width:46px;height:46px;border-radius:6px;
+    display:grid;place-items:center;
+    background:var(--teal-soft);
+    border:1px solid var(--teal);
+    font-size:1.2rem;margin-bottom:22px;
+  }
+  .card h3{font-size:1.18rem;font-weight:600;margin-bottom:12px;letter-spacing:-.01em}
+  .card p{color:var(--ink-soft);font-size:.94rem}
+
+  /* ============ MISSION PANEL ============ */
+  .mission{
+    position:relative;margin-top:52px;
+    background:var(--ink);color:#f0ece2;
+    border-radius:var(--radius);
+    padding:clamp(38px,5vw,68px);
+    overflow:hidden;
+  }
+  .mission::before{
+    content:"";position:absolute;top:0;left:0;right:0;height:4px;
+    background:linear-gradient(90deg,var(--orange),var(--teal),var(--orange));
+    background-size:200% 100%;animation:shine 8s linear infinite;
+  }
+  @keyframes shine{to{background-position:200% 0}}
+  .mission::after{
+    content:"";position:absolute;top:-60px;right:-60px;width:280px;height:280px;border-radius:50%;
+    background:radial-gradient(circle,rgba(217,83,31,.18),transparent 65%);
+    pointer-events:none;
+  }
+  .mission-tag{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:"JetBrains Mono",monospace;
+    font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;font-weight:600;
+    color:var(--ink);background:var(--orange);
+    padding:7px 14px;border-radius:2px;margin-bottom:26px;
+  }
+  .mission h3{
+    font-size:clamp(1.7rem,3.6vw,2.6rem);font-weight:500;
+    line-height:1.1;color:#f6f2ea;letter-spacing:-.02em;
+  }
+  .mission h3 em{font-style:italic;color:#7fd6c8}
+  .mission p{color:#a8b2c0;margin-top:22px;max-width:72ch;font-size:1.02rem}
+  .mission p strong{color:#f6f2ea;font-weight:600}
+
+  .mission-steps{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:0;margin-top:48px;
+    border-top:1px solid rgba(255,255,255,.12);
+  }
+  .step{
+    padding:26px 22px 0 0;
+    border-right:1px solid rgba(255,255,255,.08);
+  }
+  .step:last-child{border-right:none}
+  @media (max-width:760px){.step{border-right:none;border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:20px}}
+  .step b{
+    font-family:"Fraunces",serif;font-size:1.08rem;font-weight:600;
+    display:block;color:var(--orange);
+    letter-spacing:-.01em;margin-bottom:8px;
+  }
+  .step span{font-size:.88rem;color:#a8b2c0;display:block;line-height:1.55}
+
+  /* ============ DELIVERABLES ============ */
+  .deliver-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:22px;margin-top:52px;
+  }
+  .deliver{
+    background:var(--paper);
+    border:1.5px solid var(--ink);
+    border-radius:var(--radius);
+    padding:0;overflow:hidden;
+    transition:transform .3s,box-shadow .3s;
+    box-shadow:5px 5px 0 rgba(20,24,31,.08);
+  }
+  .deliver:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 rgba(20,24,31,.1)}
+  .deliver .num{
+    font-family:"JetBrains Mono",monospace;
+    font-size:.72rem;letter-spacing:.16em;font-weight:600;
+    padding:20px 26px;
+    background:var(--teal-soft);color:var(--teal);
+    border-bottom:1px solid var(--ink);
+    display:flex;justify-content:space-between;align-items:center;
+  }
+  .deliver .num b{color:var(--orange);font-weight:600}
+  .deliver .body{padding:28px 26px}
+  .deliver h4{font-size:1.15rem;font-weight:600;margin-bottom:12px;letter-spacing:-.01em}
+  .deliver p{color:var(--ink-soft);font-size:.93rem}
+
+  /* ============ PICK A SIDE ============ */
+  .pick{text-align:center;margin-top:52px}
+  .pick-question{
+    font-family:"Fraunces",serif;
+    font-size:clamp(1.3rem,2.6vw,1.8rem);
+    font-weight:500;max-width:42ch;margin:0 auto;
+    letter-spacing:-.015em;
+  }
+  .pick-question em{font-style:italic;color:var(--teal)}
+
+  .pick-buttons{
+    display:flex;justify-content:center;gap:18px;margin-top:40px;flex-wrap:wrap;
+  }
+  .pick-btn{
+    min-width:210px;padding:24px 30px;
+    border-radius:var(--radius);border:1.5px solid var(--ink);
+    background:var(--paper);color:var(--ink);
+    font-family:"Fraunces",serif;font-size:1.1rem;font-weight:600;
+    cursor:pointer;
+    transition:transform .25s, box-shadow .25s, background .25s, color .25s;
+    box-shadow:5px 5px 0 rgba(20,24,31,.1);
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+  }
+  .pick-btn .icn{font-size:1.5rem;line-height:1}
+  .pick-btn .label{
+    font-family:"JetBrains Mono",monospace;font-size:.68rem;
+    letter-spacing:.18em;text-transform:uppercase;
+    color:var(--muted);font-weight:600;
+  }
+  .pick-btn.free:hover,
+  .pick-btn.free.active{
+    background:var(--teal);color:#f6f2ea;border-color:var(--teal);
+    transform:translate(-3px,-3px);
+    box-shadow:8px 8px 0 rgba(13,95,95,.35);
+  }
+  .pick-btn.free:hover .label,
+  .pick-btn.free.active .label{color:rgba(246,242,234,.7)}
+  .pick-btn.protect:hover,
+  .pick-btn.protect.active{
+    background:var(--orange);color:#fff;border-color:var(--orange);
+    transform:translate(-3px,-3px);
+    box-shadow:8px 8px 0 rgba(217,83,31,.35);
+  }
+  .pick-btn.protect:hover .label,
+  .pick-btn.protect.active .label{color:rgba(255,255,255,.75)}
+
+  .pick-response{
+    margin-top:44px;min-height:110px;
+    display:flex;justify-content:center;align-items:center;
+  }
+  .pick-card{
+    max-width:560px;padding:28px 34px;
+    border-radius:var(--radius);
+    background:var(--paper);
+    border:1.5px solid var(--ink);
+    color:var(--ink);font-size:1.05rem;line-height:1.55;
+    box-shadow:6px 6px 0 rgba(20,24,31,.08);
+    opacity:0;transform:translateY(10px);
+    transition:opacity .5s ease, transform .5s ease;
+  }
+  .pick-card.show{opacity:1;transform:none}
+  .pick-card strong{
+    display:block;margin-top:12px;
+    font-family:"Fraunces",serif;font-size:1.12rem;
+    color:var(--orange);font-weight:600;font-style:italic;
+  }
+  .pick-hint{
+    font-family:"JetBrains Mono",monospace;
+    font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--muted);margin-top:36px;
+  }
+
+  /* ============ WEEKS ============ */
+  .weeks{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));
+    gap:0;margin-top:56px;
+    border-top:1.5px solid var(--ink);
+  }
+  .week{
+    position:relative;padding:34px 30px;
+    border-bottom:1px solid var(--line);
+    border-right:1px solid var(--line);
+    transition:background .3s;
+  }
+  .week:nth-child(2n){border-right:none}
+  @media (max-width:700px){.week{border-right:none}}
+  .week:hover{background:rgba(255,255,255,.6)}
+  .week .wnum{
+    font-family:"JetBrains Mono",monospace;
+    font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--orange);font-weight:600;
+  }
+  .week h4{
+    font-family:"Fraunces",serif;font-size:1.22rem;font-weight:600;
+    margin:12px 0 0;line-height:1.25;letter-spacing:-.015em;
+  }
+  .week .hook{
+    font-family:"Fraunces",serif;font-style:italic;
+    color:var(--teal);font-size:1rem;margin-top:12px;line-height:1.4;
+  }
+  .week p{font-size:.9rem;color:var(--ink-soft);margin-top:14px;line-height:1.6}
+  .week p strong{color:var(--ink);font-weight:600}
+
+  /* ============ ASSESSMENT ============ */
+  .assess{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0;margin-top:52px;border-top:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink)}
+  .assess-card{
+    padding:38px 28px;text-align:center;
+    border-right:1px solid var(--line);
+    transition:background .3s;
+  }
+  .assess-card:last-child{border-right:none}
+  @media (max-width:700px){.assess-card{border-right:none;border-bottom:1px solid var(--line)}.assess-card:last-child{border-bottom:none}}
+  .assess-card:hover{background:var(--paper)}
+  .assess-card b{
+    font-family:"Fraunces",serif;
+    font-size:2.8rem;font-weight:600;color:var(--teal);
+    display:block;line-height:1;letter-spacing:-.03em;
+  }
+  .assess-card span{display:block;margin-top:16px;font-size:.88rem;color:var(--ink-soft)}
+
+  /* ============ FINAL ============ */
+  .final{
+    text-align:center;padding:clamp(50px,8vw,90px) 30px;
+    border-radius:var(--radius);
+    background:var(--paper);
+    border:1.5px solid var(--ink);
+    box-shadow:10px 10px 0 var(--teal-soft),10px 10px 0 1.5px var(--teal);
+  }
+  .final h2{font-size:clamp(1.9rem,4.4vw,3rem);font-weight:500;letter-spacing:-.02em}
+  .final h2 em{font-style:italic;color:var(--orange)}
+  .final p{color:var(--ink-soft);max-width:56ch;margin:22px auto 0}
+  .final .cta-row{justify-content:center}
+
+  footer{
+    border-top:1.5px solid var(--ink);
+    padding:36px 0 56px;margin-top:90px;
+    display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;
+    color:var(--ink-soft);font-size:.84rem;
+    font-family:"JetBrains Mono",monospace;letter-spacing:.02em;
+  }
+  footer b{color:var(--ink);font-weight:600}
+
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (max-width:720px){
+    section{padding:80px 0}
+    .video-card{max-width:280px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker-bar" aria-hidden="true">
+  <div class="ticker-track">
+    <span>WTO · DOHA ROUND STALLED</span>
+    <span class="up">US–CHINA TARIFFS · TALKS RESUME</span>
+    <span>ASEAN TRADE +8.4%</span>
+    <span class="down">SEMICONDUCTOR EXPORTS · −3.1%</span>
+    <span>MALAYSIA–CHINA FDI ↑</span>
+    <span>RCEP IN FORCE</span>
+    <span class="down">BRENT CRUDE $82.40</span>
+    <span>CHIP EXPORT CONTROLS EXPAND</span>
+    <span class="up">INTRA-OIC TRADE +5.2%</span>
+    <span>EU CARBON BORDER · PHASE 2</span>
+    <span>GLOBAL VALUE CHAINS SHIFT</span>
+    <span class="down">SHIPPING RATES · RED SEA RISK</span>
+    <!-- duplicated for seamless loop -->
+    <span>WTO · DOHA ROUND STALLED</span>
+    <span class="up">US–CHINA TARIFFS · TALKS RESUME</span>
+    <span>ASEAN TRADE +8.4%</span>
+    <span class="down">SEMICONDUCTOR EXPORTS · −3.1%</span>
+    <span>MALAYSIA–CHINA FDI ↑</span>
+    <span>RCEP IN FORCE</span>
+    <span class="down">BRENT CRUDE $82.40</span>
+    <span>CHIP EXPORT CONTROLS EXPAND</span>
+    <span class="up">INTRA-OIC TRADE +5.2%</span>
+    <span>EU CARBON BORDER · PHASE 2</span>
+    <span>GLOBAL VALUE CHAINS SHIFT</span>
+    <span class="down">SHIPPING RATES · RED SEA RISK</span>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <!-- ============ HERO ============ -->
+  <header class="hero">
+    <div class="container">
+      <div class="hero-grid">
+
+        <div class="hero-text">
+          <span class="eyebrow">IRB30103 · SEM 1 · 2026 / 2027 · UniSZA</span>
+
+          <h1>
+            <span class="code">International Trade &amp; Political Economy</span>
+            Follow the trade.<br><em>Explain the politics.</em>
+          </h1>
+
+          <p class="lede">
+            This isn't a course where you memorise trade theories.
+            You become a <strong>trade intelligence team</strong> — pick one real
+            international trade problem, build the evidence, read the data, and
+            explain the political economy behind it. Then defend it.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#mission">The mission →</a>
+            <a class="btn btn-ghost" href="#weeks">See the 14 weeks</a>
+          </div>
+        </div>
+
+        <!-- VIDEO CARD — replace YOUR_VIDEO_ID with your YouTube ID -->
+        <div class="hero-video">
+          <div class="video-card"
+               data-video-id="YOUR_VIDEO_ID"
+               role="button"
+               tabindex="0"
+               aria-label="Play course trailer">
+            <span class="play-btn" aria-hidden="true">▶</span>
+            <span class="video-caption">Course trailer</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="stats">
+        <div class="stat"><b>14</b><span>Weeks</span></div>
+        <div class="stat"><b>79</b><span>Analysts</span></div>
+        <div class="stat"><b>3</b><span>Deliverables</span></div>
+        <div class="stat"><b>1</b><span>Trade problem</span></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ WHY ============ -->
+  <section id="why">
+    <div class="container">
+      <div class="reveal">
+        <p class="kicker">Why this course is different</p>
+        <h2 class="section-title">You don't study trade. <em>You investigate it.</em></h2>
+        <p class="section-sub">
+          Trade is never just economics. Behind every tariff, every supply chain,
+          every deal — there's a political choice and someone who benefits.
+          This course teaches you how to see both.
+        </p>
+      </div>
+
+      <div class="cards">
+        <article class="card reveal">
+          <div class="icon">🔎</div>
+          <h3>Real problem, real evidence</h3>
+          <p>You pick one real trade issue — not a broad topic — and build a defensible case using data, policy and credible sources.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon">📊</div>
+          <h3>Data that means something</h3>
+          <p>Numbers without interpretation are just decoration. You'll learn to read trade data and say what it actually shows.</p>
+        </article>
+        <article class="card reveal">
+          <div class="icon">🗣️</div>
+          <h3>Defend it out loud</h3>
+          <p>Your analysis gets tested in a roundtable. You'll have to answer challenges, reconsider evidence, and refine your position.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MISSION ============ -->
+  <section id="mission">
+    <div class="container">
+      <div class="reveal">
+        <p class="kicker">Your mission</p>
+        <h2 class="section-title">The Global Trade <em>Intelligence Project</em></h2>
+        <p class="section-sub">
+          One connected investigation, communicated three ways. The report is
+          your evidence base. The roundtable tests it. The video distils the
+          strongest quantitative findings.
+        </p>
+      </div>
+
+      <div class="mission reveal">
+        <span class="mission-tag">Mission Briefing</span>
+        <h3>One trade problem. <em>Three ways to prove it.</em></h3>
+        <p>
+          You and your team <strong>become a trade intelligence unit</strong>.
+          You'll identify one focused international trade problem — a tariff
+          shift, a supply-chain dependence, a regional trade deal, a sanctions
+          regime — and build a full evidence base around it. Then you'll interpret
+          the political economy behind it: who wins, who loses, and whose
+          interests shape the outcome.
+        </p>
+        <p style="margin-top:16px">
+          Your Digital Trade Report is where the analysis lives. The Roundtable
+          is where you defend it against other teams and new evidence. The Data
+          Video is where you take the strongest numbers and explain what they
+          actually mean. <strong>You're assessed on evidence and reasoning</strong> —
+          not on which side of the argument you take.
+        </p>
+
+        <div class="mission-steps">
+          <div class="step"><b>Identify</b><span>Pick one focused trade problem worth investigating.</span></div>
+          <div class="step"><b>Research</b><span>Build an evidence base from credible, traceable sources.</span></div>
+          <div class="step"><b>Analyse</b><span>Read the data and explain the political economy.</span></div>
+          <div class="step"><b>Publish</b><span>Produce a digital trade report that's readable and defensible.</span></div>
+          <div class="step"><b>Defend</b><span>Test your reasoning in a roundtable with other teams.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ DELIVERABLES ============ -->
+  <section id="deliverables">
+    <div class="container">
+      <div class="reveal">
+        <p class="kicker">What you'll produce</p>
+        <h2 class="section-title">Three deliverables. <em>One investigation.</em></h2>
+        <p class="section-sub">
+          This is not three separate assignments. It's one piece of trade
+          intelligence, communicated three different ways.
+        </p>
+      </div>
+
+      <div class="deliver-grid">
+        <div class="deliver reveal">
+          <div class="num"><span>DELIVERABLE 01</span><b>20%</b></div>
+          <div class="body">
+            <h4>Digital Trade Report</h4>
+            <p>One coherent piece of trade intelligence. Introduction, context, actors, data analysis, political economy, implications, references. Published, readable, and defensible.</p>
+          </div>
+        </div>
+        <div class="deliver reveal">
+          <div class="num"><span>DELIVERABLE 02</span><b>20%</b></div>
+          <div class="body">
+            <h4>Roundtable Discussion</h4>
+            <p>Not a debate — a structured exchange. You'll defend your finding, respond to alternative interpretations, and refine your position with new evidence.</p>
+          </div>
+        </div>
+        <div class="deliver reveal">
+          <div class="num"><span>DELIVERABLE 03</span><b>10%</b></div>
+          <div class="body">
+            <h4>Trade Data Analysis Video</h4>
+            <p>A short video where you take the strongest quantitative findings and explain what they mean. Clarity over production value. Evidence over visuals.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PICK A SIDE ============ -->
+  <section id="pick">
+    <div class="container">
+      <div class="reveal" style="text-align:center">
+        <p class="kicker">Before you choose your problem</p>
+        <h2 class="section-title">Where do you <em>stand</em>?</h2>
+        <p class="section-sub" style="margin-left:auto;margin-right:auto">
+          Go with your gut. There's no right answer here — only the one you'll have to support with evidence later.
+        </p>
+      </div>
+
+      <div class="pick reveal">
+        <p class="pick-question">
+          A country's key industry is being undercut by cheaper imports.
+          <em>What should it do?</em>
+        </p>
+
+        <div class="pick-buttons">
+          <button class="pick-btn free" data-side="free" type="button">
+            <span class="icn">🌐</span>
+            <span>Keep markets open</span>
+            <span class="label">"Free trade"</span>
+          </button>
+          <button class="pick-btn protect" data-side="protect" type="button">
+            <span class="icn">🛡️</span>
+            <span>Protect the industry</span>
+            <span class="label">"Intervene"</span>
+          </button>
+        </div>
+
+        <div class="pick-response" id="pickResponse" aria-live="polite"></div>
+
+        <p class="pick-hint">Choose a position to continue</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WEEKS ============ -->
+  <section id="weeks">
+    <div class="container">
+      <div class="reveal">
+        <p class="kicker">The 14-week journey</p>
+        <h2 class="section-title">What you'll actually <em>explore</em></h2>
+        <p class="section-sub">
+          Each week builds toward your investigation. By the time you sit in the
+          roundtable, you'll have the analytical toolkit to defend any finding.
+        </p>
+      </div>
+
+      <div class="weeks">
+
+        <div class="week reveal">
+          <div class="wnum">Week 01</div>
+          <h4>Conceptualization of International Trade and Political Economy</h4>
+          <p class="hook">"Why do countries trade — and who really decides?"</p>
+          <p>Trade isn't just buying and selling. It's about power, interests and who benefits. You'll meet the main actors and see why trade is never just economics.</p>
+        </div>
+
+        <div class="week reveal">
+          <div class="wnum">Week 02</div>
+          <h4>Historical Evolution and Institutions</h4>
+          <p class="hook">"Who built the rules of the world economy?"</p>
+          <p>The World Bank. The IMF. GATT. The WTO. Where they came from, what they do — and why the system looks the way it does today.</p>
+        </div>
+
+        <div class="week reveal">
+          <div class="wnum">Week 03</div>
+          <h4>Approaches to International and Political Economy</h4>
+          <p class="hook">"Free trade, or protect your own?"</p>
+          <p>Mercantilism, liberalism, structuralism, protectionism. Four ways of seeing the world economy — and how they still shape arguments today.</p>
+        </div>
+
+        <div class="week reveal">
+          <div class="wnum">Week 04</div>
+          <h4>Structures of International Political Economy</h4>
+          <p class="hook">"What actually makes the global economy run?"</p>
+          <p>Production, finance, security, technology. Four structures that decide who gets what — and why some countries win more than others.</p>
+        </div>
+
+        <div class="week reveal">
+          <div class="wnum">Week 05</div>
+          <h4>Major Ideas and Debates</h4>
+          <p class="hook">"Smith vs Keynes — who was right?"</p>
+          <p>Two giants, two visions. Free markets or state intervention? Financialization, casino capitalism, and why the argument never really ended.</p>
+        </div>
+
+        <div class="week reveal">
+          <div class="wnum">Week 06</div>
+          <h4>The International Trading System</h4>
+          <p class="hook">"What keeps the system from falling apart?"</p>
+          <p>Principles, rules, institutions. Most Favoured Nation, National Treatment — the two ideas that hold the whole system together.</p>
+        </div>
+
+        <div class="week reveal">
+          <div class="wnum">Week 07</div>
+          <h4>Trade Policy and Instruments</h4>
+          <p class="hook">"Every tool a government can use."</p>
+          <p>Tariffs, quotas, subsidies, anti-dumping, safeguards, non-tariff barriers. The full toolkit — and when each one actually gets used.</p>
+        </div>
+
+        <div class="week reveal">
+          <div class="wnum">Week 08</div>
+          <h4>Trade Negotiations and WTO Governance</h4>
+          <p class="hook">"How do 164 countries agree on anything?"</p>
+          <p>The WTO's structure, negotiations, rules, and the dispute settlement system. Plus why global trade governance is under real pressure today.</p>
+        </div>
+
+        <div class="week reveal">
+          <div class="wnum">Week 09</div>
+          <h4>North–South and South–South Trade Relations</h4>
+          <p class="hook">"Why is the game tilted — and who's changing it?"</p>
+          <p>Developed vs developing. Market access, bargaining power, special and differential treatment — and the rise of South–South trade.</p>
+        </div>
+
+        <div class="week reveal">
+          <div class="wnum">Week 10</div>
+          <h4>Regional Trade and Economic Integration</h4>
+          <p class="hook">"Why do countries form clubs?"</p>
+          <p>Free trade areas, customs unions, common markets. The politics and economics behind regional trade blocs — and how they fit with the WTO.</p>
+        </div>
+
+        <div class="week reveal">
+          <div class="wnum">Week 11</div>
+          <h4>Trade, Development and Global Production</h4>
+          <p class="hook">"Who actually makes your phone?"</p>
+          <p>Global value chains, multinational corporations, foreign direct investment. How trade drives development — and why it doesn't always.</p>
+        </div>
+
+        <div class="week reveal">
+          <div class="wnum">Week 12</div>
+          <h4>Trade, Security and Strategic Interdependence</h4>
+          <p class="hook">"When trade becomes a weapon."</p>
+          <p>Sanctions, export controls, critical supply chains, economic coercion. Why interdependence can be both a strength and a vulnerability.</p>
+        </div>
+
+        <div class="week reveal">
+          <div class="wnum">Week 13</div>
+          <h4>International Trade and the Muslim World</h4>
+          <p class="hook">"What connects the OIC economies?"</p>
+          <p>Trade patterns across Muslim-majority countries. Energy, commodities, intra-OIC trade — and the challenges of deeper economic integration.</p>
+        </div>
+
+        <div class="week reveal">
+          <div class="wnum">Week 14</div>
+          <h4>Contemporary Challenges and Future of International Trade</h4>
+          <p class="hook">"Where is trade going next?"</p>
+          <p>Trade wars, digital trade, supply-chain shifts, environmental rules. The forces reshaping trade — and what the system might look like in ten years.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ASSESSMENT ============ -->
+  <section id="assessment">
+    <div class="container">
+      <div class="reveal">
+        <p class="kicker">How you're assessed</p>
+        <h2 class="section-title">One project. <em>Three connected components.</em></h2>
+        <p class="section-sub">
+          Your report establishes the evidence base. The roundtable tests your
+          reasoning. The video distils your strongest quantitative finding.
+        </p>
+      </div>
+
+      <div class="assess">
+        <div class="assess-card reveal">
+          <b>20%</b>
+          <span>Digital Trade Report Analysis</span>
+        </div>
+        <div class="assess-card reveal">
+          <b>20%</b>
+          <span>Roundtable Discussion</span>
+        </div>
+        <div class="assess-card reveal">
+          <b>10%</b>
+          <span>Trade Data Analysis Video</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL ============ -->
+  <section id="enroll">
+    <div class="container">
+      <div class="final reveal">
+        <h2>Your task isn't to collect <em>the most</em> information.</h2>
+        <p>
+          It's to build the most convincing, evidence-based explanation of one
+          international trade problem — and defend it with data, reasoning, and
+          the political economy behind it.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#mission">Back to the mission →</a>
+          <a class="btn btn-ghost" href="#weeks">Review the 14 weeks</a>
+        </div>
+      </div>
+
+      <footer>
+        <span><b>IRB30103 International Trade and Political Economy</b> · Semester 1, 2026/2027</span>
+        <span>Lecturer: <b>Faris Akmal Abd Rahman</b> · Faculty of Law and International Relations, UniSZA</span>
+      </footer>
+    </div>
+  </section>
+
+</div>
+
+<script>
+  /* ---------- scroll reveal ---------- */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('in'), i * 50);
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.12, rootMargin: '0px 0px -60px 0px'});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* ---------- video facade → YouTube embed ---------- */
+  document.querySelectorAll('.video-card').forEach(card => {
+    const activate = () => {
+      const id = card.dataset.videoId;
+      if (!id || id === 'YOUR_VIDEO_ID') {
+        alert('Video not set yet.\n\nReplace "YOUR_VIDEO_ID" in the HTML with your YouTube video ID.');
+        return;
+      }
+      card.innerHTML =
+        '<iframe src="https://www.youtube.com/embed/' + id +
+        '?autoplay=1&rel=0&modestbranding=1&playsinline=1" ' +
+        'allow="autoplay; encrypted-media; picture-in-picture; fullscreen" ' +
+        'allowfullscreen></iframe>';
+      card.style.cursor = 'default';
+    };
+    card.addEventListener('click', activate);
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); }
+    });
+  });
+
+  /* ---------- PICK A SIDE mini game ---------- */
+  (function(){
+    const responses = {
+      free: [
+        "Open markets. Confident.",
+        "You trust comparative advantage. Classic.",
+        "You'd rather compete than hide. Bold.",
+        "You see protection as a slow poison. Noted.",
+      ],
+      protect: [
+        "You defend the industry. Pragmatic.",
+        "You'd take the short-term cost for the long-term gain. Firm.",
+        "You see markets as a battlefield. Realistic.",
+        "You don't trust the free-trade story. Interesting.",
+      ]
+    };
+
+    const buttons = document.querySelectorAll('.pick-btn');
+    const output  = document.getElementById('pickResponse');
+    if (!buttons.length || !output) return;
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const side = btn.dataset.side;
+        const pool = responses[side];
+        const line = pool[Math.floor(Math.random() * pool.length)];
+
+        buttons.forEach(b => b.classList.toggle('active', b === btn));
+
+        output.innerHTML = `
+          <div class="pick-card">
+            ${line}
+            <strong>Now back it with evidence.</strong>
+          </div>
+        `;
+
+        requestAnimationFrame(() => {
+          const card = output.querySelector('.pick-card');
+          if (card) card.classList.add('show');
+        });
+      });
+    });
+  })();
+</script>
+</body>
+</html>
